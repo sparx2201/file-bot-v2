@@ -116,7 +116,7 @@ async def start_command(client: Client, message: Message):
 
 # Helper function to delete the message after 10 minutes
 async def delete_after_delay(client, chat_id, message_id):
-    await asyncio.sleep(600)  # 600 seconds = 10 minutes
+    await asyncio.sleep(10)  # 600 seconds = 10 minutes
     try:
         await client.delete_messages(chat_id=chat_id, message_ids=message_id)
     except Exception as e:
