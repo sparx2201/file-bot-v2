@@ -77,13 +77,17 @@ async def start_command(client: Client, message: Message):
 
             try:
                 await msg.copy(chat_id=message.from_user.id, caption = caption, parse_mode = ParseMode.HTML, reply_markup = reply_markup, protect_content=PROTECT_CONTENT)
-                await asyncio.sleep(10)
-                await client.delete_messages(chat_id=message.from_user.id, message_ids=sent_message.id)
-            except FloodWait as e:
+                #await asyncio.sleep(10)
+               # Schedule deletion after 10 minutes
+                await asyncio.create_task(delete_after_delay(client, message.from_user.id, sent_message.id))
+
+            except FloodWait as e: 
                 await asyncio.sleep(e.x)
                 await msg.copy(chat_id=message.from_user.id, caption = caption, parse_mode = ParseMode.HTML, reply_markup = reply_markup, protect_content=PROTECT_CONTENT)
-                await asyncio.sleep(10)
-                await client.delete_messages(chat_id=message.from_user.id, message_ids=sent_message.id)
+               # await asyncio.sleep(10)
+               # Schedule deletion after 10 minutes
+                await asyncio.create_task(delete_after_delay(client, message.from_user.id, sent_message.id)) 
+
             except:
                 pass
         return
@@ -110,7 +114,13 @@ async def start_command(client: Client, message: Message):
         )
         return
 
-    
+# Helper function to delete the message after 10 minutes
+async def delete_after_delay(client, chat_id, message_id):
+    await asyncio.sleep(600)  # 600 seconds = 10 minutes
+    try:
+        await client.delete_messages(chat_id=chat_id, message_ids=message_id)
+    except Exception as e:
+        print(f"Failed to delete message: {e}")
 #=====================================================================================##
 
 WAIT_MSG = """"<b>Processing ...</b>"""
