@@ -1,7 +1,8 @@
 user:
   name: dark
   github: sparx2201
-
+  
+language: "python"
 python_version: "3.8"
 
 commands:
