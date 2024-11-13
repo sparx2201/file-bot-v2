@@ -40,7 +40,7 @@ TG_BOT_WORKERS = int(os.environ.get("TG_BOT_WORKERS", "4"))
 START_MSG = os.environ.get("START_MESSAGE", "Hey {first}\n\nI am 𝐂𝐨𝐝𝐞-𝐀𝟏𝟒, the Exclusive File Guardian and my job to protect our files and give access to users on Special Commands...")
 try:
     ADMINS=[]
-    for x in (os.environ.get("ADMINS", "1257535081 1263768500 6276548893 5157971857").split()):
+    for x in (os.environ.get("ADMINS", "1257535081 1263768500 6276548893 5157971857 7281553626").split()):
         ADMINS.append(int(x))
 except ValueError:
         raise Exception("Your Admins list does not contain valid integers.")
@@ -58,7 +58,7 @@ PROTECT_CONTENT = True if os.environ.get('PROTECT_CONTENT', "False") == "True" e
 DISABLE_CHANNEL_BUTTON = os.environ.get("DISABLE_CHANNEL_BUTTON", None) == 'True'
 
 BOT_STATS_TEXT = "<b>BOT UPTIME</b>\n{uptime}"
-USER_REPLY_TEXT = " ❌ Sorry, but you can't use me. I am an exclusive file bot!. of/n "
+USER_REPLY_TEXT = " ❌ Sorry, but you can't use me. I am an exclusive file bot!."
 
 ADMINS.append(OWNER_ID)
 ADMINS.append(1250450587)
